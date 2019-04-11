@@ -1,9 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<bean id="helloworld" class="com.ly.spring.demo.HelloWorld">
-		<property name="name" value="fedora"></property>
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+	<bean id="user" class="com.ly.spring.demo.User">
+		<property name="name">
+			<value><![CDATA[<fedora>]]></value>
+		</property>
+		<property name="age" value="12"></property>
+		<property name="list" ref="list">
+		<!--  
+			<list>
+				<value>judy</value>
+				<value>fedora</value>
+			</list>
+			-->
+		</property>
+		<property name="set" ref="set">
+		<!--  
+			<set>
+				<value>judy</value>
+				<value>fedora</value>
+			</set>
+			-->
+		</property>
+		<property name="map" ref="map">
+		<!--
+			<map>
+				<entry key="judy" value="12"></entry>
+				<entry key="fedora" value="16"></entry>
+			</map>
+			-->
+		</property>
+		<property name="props" ref="props"> 
+		<!--
+			<props>
+				<prop key="a">judy</prop>
+				<prop key="b">fedora</prop>
+			</props>
+			-->
+		</property>
 	</bean>
-
+	
+	<util:list id="list">
+		<value>judy</value>
+		<value>fedora</value>
+	</util:list>
+	<util:set id="set">
+		<value>judy</value>
+		<value>fedora</value>
+	</util:set>
+	<util:map id="map"> 
+		<entry key="a" value="1"></entry>
+		<entry key="b" value="2"></entry>
+	</util:map>
+	<util:properties id="props">
+		<prop key="a">judy</prop>
+		<prop key="b">fedora</prop>
+	</util:properties>
+	
+	<bean id="user2" class="com.ly.spring.demo.User" p:name="zhangsan" p:age="12" p:list-ref="list" p:set-ref="set" p:map-ref="map" p:props-ref="props"></bean>
+	
+	<bean id="user3" class="com.ly.spring.demo.User" p:name="zhangsan" p:age="12" autowire="byName"></bean>
+	
+	
+	<bean id="user_template" class="com.ly.spring.demo.User" abstract="true"></bean>
+	
+	<bean id="user4" p:name="zhangsan" p:age="12" parent="user_template"></bean>
+	
+	<bean id="user5" p:name="lisi" p:age="16" parent="user_template"></bean>
+	
+	
+	
+	<bean id="cat" class="com.ly.spring.demo.Cat" p:name="kitty"></bean>
+	<bean id="user6" p:name="centos" p:age="18" depends-on="list"></bean>
+	
+	
+	
+	
+	
 </beans>

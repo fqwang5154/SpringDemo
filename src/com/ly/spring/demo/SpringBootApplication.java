@@ -10,12 +10,17 @@ public class SpringBootApplication {
 		// hw.setName("judy");
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-		User user4 = (User) context.getBean("user4");
-
-		System.out.println(user4);
-
-		User user6 = (User) context.getBean("user6");
-
-		System.out.println(user6);
+//		User user4 = (User) context.getBean("user4");
+//
+//		System.out.println(user4);
+//
+//		User user7 = (User) context.getBean("user7");
+//
+//		System.out.println(user7);
+		
+		
+		ConnectionFactory conn = (ConnectionFactory) context.getBean("connectionFactory");
+		
+		System.out.println(conn);
 	}
 }

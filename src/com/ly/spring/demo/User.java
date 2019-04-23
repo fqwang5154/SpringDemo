@@ -18,6 +18,8 @@ public class User {
 	private Map<String, Integer> map;
 
 	private Properties props;
+	
+	private Cat cat;
 
 	public Properties getProps() {
 		return props;
@@ -71,10 +73,19 @@ public class User {
 		System.out.println("hello, " + this.name);
 	}
 
+	public Cat getCat() {
+		return cat;
+	}
+
+	public void setCat(Cat cat) {
+		this.cat = cat;
+	}
+
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", age=" + age + ", list=" + list + ", set=" + set + ", map=" + map + ", props="
-				+ props + "]";
+				+ props + ", cat=" + cat + "]";
 	}
+
 
 }

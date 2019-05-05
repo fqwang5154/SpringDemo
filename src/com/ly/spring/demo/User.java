@@ -61,16 +61,8 @@ public class User {
 		this.list = list;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void hello() {
-		System.out.println("hello, " + this.name);
+	public void hello(String name) {
+		System.out.println("hello, " + name);
 	}
 
 	public Cat getCat() {

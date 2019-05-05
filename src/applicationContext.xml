@@ -75,7 +75,9 @@
 	
 	
 	<bean id="cat" class="com.ly.spring.demo.Cat" p:name="kitty"></bean>
-	<bean id="user6" p:name="centos" p:age="18" depends-on="list"></bean>
+	<bean id="user6" p:name="centos" p:age="#{1>2 ? 20: 10}" p:cat="#{cat}" p:catName="#{cat.name}" parent="user_template"></bean>
+	
+	<bean id="car" class="com.ly.spring.demo.Car" p:type="BMW" init-method="init" destroy-method="destory"></bean>
 	
 	
 	

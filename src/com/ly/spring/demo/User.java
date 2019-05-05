@@ -19,6 +19,26 @@ public class User {
 
 	private Properties props;
 
+	private Cat cat;
+
+	private String catName;
+
+	public String getCatName() {
+		return catName;
+	}
+
+	public void setCatName(String catName) {
+		this.catName = catName;
+	}
+
+	public Cat getCat() {
+		return cat;
+	}
+
+	public void setCat(Cat cat) {
+		this.cat = cat;
+	}
+
 	public Properties getProps() {
 		return props;
 	}
@@ -74,7 +94,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", age=" + age + ", list=" + list + ", set=" + set + ", map=" + map + ", props="
-				+ props + "]";
+				+ props + ", cat=" + cat + ", catName=" + catName + "]";
 	}
 
 }

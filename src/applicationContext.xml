@@ -3,44 +3,47 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
-	<bean id="user" class="com.ly.spring.demo.User">
+		
+	<!-- <bean id="user" class="com.ly.spring.demo.User">
 		<property name="name">
 			<value><![CDATA[<fedora>]]></value>
 		</property>
 		<property name="age" value="12"></property>
 		<property name="list" ref="list">
-		<!--  
+		 
 			<list>
 				<value>judy</value>
 				<value>fedora</value>
 			</list>
-			-->
+			
 		</property>
 		<property name="set" ref="set">
-		<!--  
+		 
 			<set>
 				<value>judy</value>
 				<value>fedora</value>
 			</set>
-			-->
+			
 		</property>
 		<property name="map" ref="map">
-		<!--
+		
 			<map>
 				<entry key="judy" value="12"></entry>
 				<entry key="fedora" value="16"></entry>
 			</map>
-			-->
+			
 		</property>
 		<property name="props" ref="props"> 
-		<!--
+		
 			<props>
 				<prop key="a">judy</prop>
 				<prop key="b">fedora</prop>
 			</props>
-			-->
+			
 		</property>
 	</bean>
 	
@@ -60,8 +63,8 @@
 		<prop key="a">judy</prop>
 		<prop key="b">fedora</prop>
 	</util:properties>
-	
-	<bean id="user2" class="com.ly.spring.demo.User" p:name="zhangsan" p:age="12" p:list-ref="list" p:set-ref="set" p:map-ref="map" p:props-ref="props"></bean>
+	 -->
+<!-- 	<bean id="user2" class="com.ly.spring.demo.User" p:name="zhangsan" p:age="12" p:list-ref="list" p:set-ref="set" p:map-ref="map" p:props-ref="props"></bean>
 	
 	<bean id="user3" class="com.ly.spring.demo.User" p:name="zhangsan" p:age="12" autowire="byName"></bean>
 	
@@ -75,12 +78,41 @@
 	
 	
 	<bean id="cat" class="com.ly.spring.demo.Cat" p:name="kitty"></bean>
+<<<<<<< HEAD
 	<bean id="user6" p:name="centos" p:age="#{1>2 ? 20: 10}" p:cat="#{cat}" p:catName="#{cat.name}" parent="user_template"></bean>
 	
 	<bean id="car" class="com.ly.spring.demo.Car" p:type="BMW" init-method="init" destroy-method="destory"></bean>
+=======
+	<bean id="user6"  p:name="zhangsan" p:age="12" parent="user_template">
+		<property name="cat">
+			<bean class="com.ly.spring.demo.Cat" p:name="kitty"></bean>
+		</property>
+	</bean>
+>>>>>>> branch 'master' of https://github.com/fqwang5154/SpringDemo.git
 	
 	
+	<bean id="cat2" class="com.ly.spring.demo.Cat" p:name="kitty" scope="prototype"></bean>
+	<bean id="user7" p:name="zhangsan" p:age="12" parent="user_template" p:list="#{list}" depends-on="cat2" p:cat="#{cat2}"></bean>
+	<bean id="user7" p:name="zhangsan" p:age="12" parent="user_template" p:list-ref="list" depends-on="cat2" p:cat-ref="cat2"></bean>
 	
+	<context:property-placeholder location="classpath:rabbitmq.properties"/>
 	
+	<bean id="connectionFactory" class="com.ly.spring.demo.ConnectionFactory">
+		<property name="host" value="${host}"></property>
+		<property name="port" value="${port}"></property>
+		<property name="vhost" value="${vhost}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="passwd" value="${passwd}"></property>
+	</bean> -->
 	
+	<bean id="kitty" class="com.ly.spring.demo.StaticBeanFactory" factory-method="getCat">
+		<constructor-arg value="kitty"/>
+	</bean>
+	
+	<bean id="factoryBean" class="com.ly.spring.demo.InstanceBeanFactory" ></bean>
+	<bean id="black" factory-bean="factoryBean" factory-method="getCat">
+		<constructor-arg value="black"></constructor-arg>
+	</bean>
+	
+	<bean id="tcat" class="com.ly.spring.demo.MyFactoryBean"></bean>
 </beans>
